@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import times from '../../services/fetchTime';
 import type { TimeResponse } from '../../types/timeResponse';
 
+import { BsSun } from 'react-icons/bs';
+import { IoMoon } from 'react-icons/io5';
+
 const Clock = () => {
   const [timezone, setTimezone] = useState<string | undefined>(undefined);
   const [time, setTime] = useState(new Date());
@@ -31,7 +34,10 @@ const Clock = () => {
 
   return (
     <div className="flex flex-col py-10">
-      <p className="text-white md:text-3xl xl:text-5xl text-2xl">
+      <p className="text-white md:text-3xl xl:text-5xl text-2xl flex gap-3">
+        <span className="flex justify-center items-center">
+          {time.getHours() > 12 ? <IoMoon size={30} /> : <BsSun size={25} />}
+        </span>
         {time.getHours() > 12
           ? `Good afternoon it's currently`
           : `Good morning it's currently`}

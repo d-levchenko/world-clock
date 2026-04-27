@@ -20,6 +20,7 @@ const CitySelector = ({ onSelect }: CitySelectorProps) => {
 
   return (
     <div className="flex flex-col py-10">
+      <p className="text-white text-2xl mb-2">Select a city to compare time</p>
       <input
         className="block w-2/5 md:w-1/4 rounded-md border-0 py-1.5 px-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-200 sm:text-sm sm:leading-6"
         type="text"
