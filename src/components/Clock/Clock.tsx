@@ -3,45 +3,42 @@ import times from '../../services/fetchTime';
 import type { TimeResponse } from '../../types/timeResponse';
 
 const Clock = () => {
-  const [time, setTime] = useState<TimeResponse | null>(null);
+  const [timezone, setTimezone] = useState<string | undefined>(undefined);
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const fetchClock = async () => {
-      try {
-        const response = await times.fetchTimeByIP();
-        setTime(response);
-      } catch (error) {
-        console.error('Error fetching time:', error);
-      }
-    };
-
-    fetchClock();
+    times
+      .fetchTimeByIP()
+      .then((data: TimeResponse) => setTimezone(data.timezone));
   }, []);
 
-  const parseDate = (datetime: string) => {
-    const fixed = datetime.replace(/(\.\d{3})\d+/, '$1');
-    return new Date(fixed);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
 
-  const date = parseDate(time?.datetime || '');
-
-  const timeStr = date.toLocaleTimeString('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
-
-  const day = date.toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-  });
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="clock">
-      <h1>{time ? timeStr : 'Loading...'}</h1>
-      <h2>{time ? day : 'Loading...'}</h2>
-      <h2>{time ? time.timezone : 'Loading...'}</h2>
+    <div className="flex flex-col">
+      <p>
+        {time.toLocaleString(undefined, {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          timeZone: timezone,
+        })}
+      </p>
+      <p>
+        {time.toLocaleString(undefined, {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+          timeZone: timezone,
+        })}
+      </p>
+      <p>{timezone?.replace('/', ' - ')}</p>
     </div>
   );
 };

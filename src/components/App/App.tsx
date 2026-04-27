@@ -1,11 +1,11 @@
 import Clock from '../Clock/Clock';
 
-function App() {
+const App = () => {
   return (
     <>
       <Clock />
     </>
   );
-}
+};
 
 export default App;
