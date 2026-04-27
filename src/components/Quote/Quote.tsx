@@ -1,7 +1,7 @@
 const Quote = () => {
   return (
     <div className="py-10">
-      <p className="text-white w-1/2">
+      <p className="text-white w-1/2 mb-1.5">
         "The science of operations, as derived from mathematics more especially
         is a science of itself, and has it's own abstract truth and value."
       </p>
