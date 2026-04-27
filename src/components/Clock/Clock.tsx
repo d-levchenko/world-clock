@@ -20,9 +20,20 @@ const Clock = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const bgImage =
+    time.getHours() > 12
+      ? 'bg-[url(./images/night-bg.jpg)]'
+      : 'bg-[url(./images/day-bg.avif)]';
+
   return (
-    <div className="flex flex-col">
-      <p>
+    <div className={`flex flex-col ${bgImage} bg-cover bg-center h-screen`}>
+      <p className="text-white text-5xl">
+        {time.getHours() > 12
+          ? `Good afternoon it's currently`
+          : `Good morning it's currently`}
+      </p>
+
+      <p className="text-white text-7xl">
         {time.toLocaleString(undefined, {
           hour: 'numeric',
           minute: 'numeric',
@@ -30,15 +41,7 @@ const Clock = () => {
           timeZone: timezone,
         })}
       </p>
-      <p>
-        {time.toLocaleString(undefined, {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-          timeZone: timezone,
-        })}
-      </p>
-      <p>{timezone?.replace('/', ' - ')}</p>
+      <p className="text-white text-4xl">IN {timezone?.replace('/', ' - ')}</p>
     </div>
   );
 };

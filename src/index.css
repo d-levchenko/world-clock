@@ -62,6 +62,8 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+
+  /* background-image: url('./images/day-bg.avif'); */
 }
 
 body {
