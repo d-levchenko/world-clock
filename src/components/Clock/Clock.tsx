@@ -22,11 +22,15 @@ const Clock = () => {
 
   const bgImage =
     time.getHours() > 12
-      ? 'bg-[url(./images/night-bg.jpg)]'
-      : 'bg-[url(./images/day-bg.avif)]';
+      ? 'bg-[url(./images/night-bg.jpg)] bg-cover bg-center bg-no-repeat'
+      : 'bg-[url(./images/day-bg.avif)] bg-cover bg-center bg-no-repeat';
+
+  useEffect(() => {
+    document.body.className = bgImage;
+  }, [bgImage]);
 
   return (
-    <div className={`flex flex-col ${bgImage} bg-cover bg-center h-screen`}>
+    <div className="flex flex-col py-10">
       <p className="text-white text-5xl">
         {time.getHours() > 12
           ? `Good afternoon it's currently`
