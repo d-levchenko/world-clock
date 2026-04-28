@@ -1,23 +1,29 @@
 import Clock from '../Clock/Clock';
 import Quote from '../Quote/Quote';
-import CityTime from '../CityTime/CityTime';
-import CitySelector from '../CitySelector/CitySelector';
+import MoreInfo from '../MoreInfo/MoreInfo';
 
-import { useState } from 'react';
+import fetchTime from '../../services/fetchTime';
+import type { TimeResponse } from '../../types/timeResponse';
+
+import { useEffect, useState } from 'react';
 
 const App = () => {
-  const [selectedZone, setSelectedZone] = useState<string | null>(null);
+  const [data, setData] = useState<TimeResponse | null>(null);
+  const [showMore, setShowMore] = useState(false);
 
-  const handleSelect = (zone: string) => {
-    setSelectedZone(zone);
-  };
+  useEffect(() => {
+    fetchTime.fetchTimeByIP().then(setData);
+  }, []);
 
   return (
     <>
       <Quote />
-      <Clock />
-      {selectedZone && <CityTime zone={selectedZone} />}
-      <CitySelector onSelect={handleSelect} />
+      <Clock realTime={data} />
+      <MoreInfo
+        data={data}
+        isVisible={showMore}
+        onToggle={() => setShowMore(prev => !prev)}
+      />
     </>
   );
 };

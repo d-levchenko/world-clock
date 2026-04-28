@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
-import times from '../../services/fetchTime';
+
 import type { TimeResponse } from '../../types/timeResponse';
 
 import { BsSun } from 'react-icons/bs';
 import { IoMoon } from 'react-icons/io5';
 
-const Clock = () => {
-  const [timezone, setTimezone] = useState<string | undefined>(undefined);
-  const [time, setTime] = useState(new Date());
+interface ClockProps {
+  realTime: TimeResponse | null;
+}
 
-  useEffect(() => {
-    times
-      .fetchTimeByIP()
-      .then((data: TimeResponse) => setTimezone(data.timezone));
-  }, []);
+const Clock = ({ realTime }: ClockProps) => {
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,11 +45,11 @@ const Clock = () => {
           hour: 'numeric',
           minute: 'numeric',
           second: 'numeric',
-          timeZone: timezone,
+          timeZone: realTime?.timezone,
         })}
       </p>
       <p className="text-white text-3xl md:text-4xl">
-        IN {timezone?.replace('/', ' - ').replace('_', ' ')}
+        IN {realTime?.timezone?.replace('/', ' - ').replace('_', ' ')}
       </p>
     </div>
   );
