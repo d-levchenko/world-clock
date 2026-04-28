@@ -17,6 +17,7 @@ const MoreInfo = ({ data, isVisible, onToggle }: MoreInfoProps) => {
           <p>Day of year: {data?.day_of_year}</p>
           <p>Day of week: {data?.day_of_week}</p>
           <p>Week numbers: {data?.week_number}</p>
+          <p>Timezone: {data?.timezone}</p>
         </>
       )}
     </div>

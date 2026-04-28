@@ -1,75 +1,83 @@
-# React + TypeScript + Vite
+# Local Time Open API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite app showcasing the current local time and timezone information with
+a Tailwind-styled dashboard.
 
-Currently, two official plugins are available:
+## Live demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[View live application](https://world-clock-steel.vercel.app/)
 
-## React Compiler
+## Overview
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+This project uses React, TypeScript, Vite, and Tailwind CSS to build a clock
+dashboard that:
 
-Note: This will impact Vite dev & build performances.
+- detects the user's timezone via an external time API
+- displays a live updating clock every second
+- shows a motivational quote and a day/night themed background
+- includes a toggleable `MoreInfo` panel for day-of-year, day-of-week, week
+  number and timezone
+- applies Tailwind classes inside components so styles are already in place
 
-## Expanding the ESLint configuration
+## What is included
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `App` handles data fetching and state management
+- `Clock` renders the current time, timezone label, and theme icon
+- `Quote` renders a static quote section
+- `MoreInfo` toggles additional time metadata
+- Tailwind CSS is configured through `@tailwindcss/vite`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Scripts
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `npm install` — install dependencies
+- `npm run dev` — start the development server
+- `npm run build` — build the production bundle
+- `npm run preview` — preview the production build locally
+- `npm run lint` — run ESLint
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Notes
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- The current UI is styled using Tailwind utility classes in each component.
+- The app is functional and ready to run, with more polish and logic
+  enhancements planned for future updates.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Dependencies
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `react`, `react-dom`
+- `typescript`
+- `vite`
+- `tailwindcss`
+- `@tailwindcss/vite`
+- `axios`
+- `react-icons`
+
+## Installation
+
+1. ** Clone the repository**:
+
+   ```bash
+   git clone https://github.com/d-levchenko/world-clock.git
+   cd world-clock
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open the app in your browser**:
+   - **Development**: [http://localhost:5173/](http://localhost:5173/)
+   - **Production version**:
+     [https://world-clock-steel.vercel.app/](https://world-clock-steel.vercel.app/)
+
+## Acknowledgments
+
+- [Time API](https://time.now/developer/api) for current time and timezone
+  information
