@@ -1,4 +1,4 @@
-# Local Time Open API
+# World Clock
 
 React + Vite app showcasing the current local time and timezone information with
 a Tailwind-styled dashboard.
