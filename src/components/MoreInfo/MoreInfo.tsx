@@ -20,15 +20,15 @@ const MoreInfo = ({ data, isVisible, onToggle }: MoreInfoProps) => {
         />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out flex flex-wrap gap-2
+        className={`overflow-hidden transition-all duration-300 ease-in-out grid grid-cols-2 grid-rows-2 gap-3 rounded-md md:w-1/2 w-64 py-1 backdrop-blur-md
           ${isVisible ? 'max-h-40 opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-2 pointer-events-none'}
         `}>
-        <p className="text-white basis-1/3">Day of year: {data?.day_of_year}</p>
-        <p className="text-white basis-1/3">Day of week: {data?.day_of_week}</p>
-        <p className="text-white basis-1/3">
-          Week numbers: {data?.week_number}
+        <p className="text-white">Day of year: {data?.day_of_year}</p>
+        <p className="text-white">Day of week: {data?.day_of_week}</p>
+        <p className="text-white">Week numbers: {data?.week_number}</p>
+        <p className="text-white">
+          Timezone: {data?.timezone.replaceAll('_', ' ').replaceAll('/', ' - ')}
         </p>
-        <p className="text-white basis-1/3">Timezone: {data?.timezone}</p>
       </div>
     </div>
   );
